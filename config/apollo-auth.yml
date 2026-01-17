@@ -1,0 +1,65 @@
+spring:
+  datasource:
+    url: ${DATABASE_CONNECTION_STRING}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    create-schemas: true
+    locations: classpath:db/migration
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
+            redirect-uri: ${GOOGLE_REDIRECT_URL}
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://openidconnect.googleapis.com/v1/userinfo
+            user-name-attribute: sub
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+sendgrid:
+  api-key: ${SENDGRID_API_KEY}
+  from-email: ${SENDGRID_FROM_EMAIL}
+  from-name: ${SENDGRID_FROM_NAME}
+
+JWT_SECRET: ${JWT_SECRET}
+JWT_EXPIRY: ${JWT_EXPIRY}
+OTP_EXPIRY_TIME_IN_MINUTES: ${OTP_EXPIRY_TIME_IN_MINUTES}
+FRONTEND_URL: ${FRONTEND_URL}
+
+logging:
+  level:
+    root: INFO
+    com.sourcenode.auth: DEBUG
