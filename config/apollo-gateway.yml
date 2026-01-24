@@ -27,7 +27,7 @@ management:
   info:
     env:
       enabled: true
-
+JWT_SECRET: ${JWT_SECRET}
 info:
   app:
     name: gatewayserver
