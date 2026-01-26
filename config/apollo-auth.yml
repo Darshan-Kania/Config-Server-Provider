@@ -65,6 +65,7 @@ do:
     bucket: sourcenode-dev
     region: sfo3
     endpoint: https://sfo3.digitaloceanspaces.com
+    cdn-url: https://sourcenode-dev.sfo3.cdn.digitaloceanspaces.com
     access-key: ${DO_Spaces_Access_Key}
     secret-key: ${DO_Spaces_Secret_Key}
 logging:
