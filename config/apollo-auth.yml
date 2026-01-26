@@ -9,10 +9,11 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: validate
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
+        use_sql_comments: false
 
   flyway:
     enabled: true
@@ -30,7 +31,7 @@ spring:
             scope:
               - email
               - profile
-            REDIRECT_URL: ${GOOGLE_REDIRECT_URL}
+            redirect-uri: ${GOOGLE_REDIRECT_URL}
         provider:
           google:
             authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
@@ -63,4 +64,6 @@ FRONTEND_URL: ${FRONTEND_URL}
 logging:
   level:
     root: INFO
-    com.sourcenode.auth: DEBUG
+    org.hibernate.SQL: OFF
+    org.hibernate.type.descriptor.sql.BasicBinder: OFF
+    com.apollo.auth: INFO
