@@ -62,6 +62,9 @@ OTP_EXPIRY_TIME_IN_MINUTES: ${OTP_EXPIRY_TIME_IN_MINUTES}
 FRONTEND_URL: ${FRONTEND_URL}
 do:
   spaces:
+    bucket: sourcenode-dev
+    region: sfo3
+    endpoint: https://sfo3.digitaloceanspaces.com
     access-key: ${DO_Spaces_Access_Key}
     secret-key: ${DO_Spaces_Secret_Key}
 logging:
