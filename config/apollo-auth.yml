@@ -60,7 +60,10 @@ JWT_EXPIRY: ${JWT_EXPIRY}
 JWT_REFRESH_EXPIRY: ${JWT_REFRESH_EXPIRY}
 OTP_EXPIRY_TIME_IN_MINUTES: ${OTP_EXPIRY_TIME_IN_MINUTES}
 FRONTEND_URL: ${FRONTEND_URL}
-
+do:
+  spaces:
+    access-key: ${DO_Spaces_Access_Key}
+    secret-key: ${DO_Spaces_Secret_Key}
 logging:
   level:
     root: INFO
