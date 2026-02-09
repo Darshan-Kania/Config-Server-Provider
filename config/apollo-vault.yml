@@ -1,0 +1,51 @@
+spring:
+  datasource:
+    url: ${DATABASE_CONNECTION_STRING}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      schema: ${DATABASE_SCHEMA}
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+      default_schema: ${DATABASE_SCHEMA}
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        use_sql_comments: false
+        default_schema: ${DATABASE_SCHEMA}
+
+  flyway:
+    enabled: ${FLYWAY_ENABLED:true}
+    baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:true}
+    create-schemas: true
+    schemas: ${DATABASE_SCHEMA}
+    default-schema: ${DATABASE_SCHEMA}
+    locations: ${FLYWAY_LOCATIONS:classpath:db/migration}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+sendgrid:
+  api-key: ${SENDGRID_API_KEY}
+  from-email: ${SENDGRID_FROM_EMAIL}
+  from-name: ${SENDGRID_FROM_NAME}
+FRONTEND_URL: ${FRONTEND_URL}
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: OFF
+    org.hibernate.type.descriptor.sql.BasicBinder: OFF
+    com.apollo.auth: INFO
