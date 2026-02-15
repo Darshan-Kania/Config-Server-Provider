@@ -52,6 +52,7 @@ sendgrid:
   from-email: ${SENDGRID_FROM_EMAIL}
   from-name: ${SENDGRID_FROM_NAME}
 FRONTEND_URL: ${FRONTEND_URL}
+common_encrypt_key: ${COMMON_ENCRYPT_KEY}
 logging:
   level:
     root: INFO
