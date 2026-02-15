@@ -7,7 +7,7 @@ spring:
     hikari:
       schema: ${DATABASE_SCHEMA}
   rabbitmq:
-    host: localhost
+    host: ${RABBITMQ_HOST}
     port: 5672
     username: ${RABBITMQ_USERNAME}
     password: ${RABBITMQ_PASSWORD}
