@@ -2,77 +2,53 @@ spring:
   data:
     mongodb:
       uri: ${MONGODB_URI}
-      database: ${MONGODB_DATABASE}
-      auto-index-creation: ${MONGODB_AUTO_INDEX:true}
+      database: ${MONGODB_DATABASE:apollo-chat}
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
 
   rabbitmq:
     host: ${RABBITMQ_HOST}
-    port: ${RABBITMQ_PORT:5672}
+    port: 5672
     username: ${RABBITMQ_USERNAME}
     password: ${RABBITMQ_PASSWORD}
-    virtual-host: ${RABBITMQ_VHOST:/}
     listener:
       simple:
         concurrency: 2
         max-concurrency: 5
-        prefetch: ${RABBITMQ_PREFETCH:50}
-        acknowledge-mode: manual
+        prefetch: 20
 
-  redis:
-    host: ${REDIS_HOST}
-    port: ${REDIS_PORT}
-    password: ${REDIS_PASSWORD:}
-
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: ${JWT_ISSUER}
-          jwk-set-uri: ${JWT_JWKS_URI}
-
-ws:
-  endpoint: ${WS_ENDPOINT:/ws}
-  heartbeat-interval: ${WS_HEARTBEAT_INTERVAL:30000}
-  allowed-origins: ${WS_ALLOWED_ORIGINS}
-
-chat:
-  message:
-    page-size: ${MESSAGE_PAGE_SIZE:50}
-    max-length: ${MESSAGE_MAX_LENGTH:5000}
-  typing:
-    ttl-seconds: ${TYPING_TTL_SECONDS:10}
-  presence:
-    ttl-seconds: ${REDIS_TTL_PRESENCE_SECONDS:60}
-  outbox:
-    poll-interval-ms: ${OUTBOX_POLL_INTERVAL_MS:2000}
-    batch-size: ${OUTBOX_BATCH_SIZE:100}
-
-rabbit:
-  exchange: ${RABBITMQ_EXCHANGE}
-  dlq: ${RABBITMQ_DLQ}
-
-aws:
-  region: ${AWS_REGION}
-  s3:
-    bucket: ${AWS_S3_BUCKET}
-    endpoint: ${AWS_S3_ENDPOINT}
-    presigned-expiry-minutes: ${AWS_PRESIGNED_URL_EXPIRY_MINUTES:10}
-
-frontend:
-  url: ${FRONTEND_URL}
-
-common:
-  encrypt-key: ${COMMON_ENCRYPT_KEY}
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,prometheus
+        include: health,info
+
+do:
+  spaces:
+    endpoint: ${DO_SPACES_ENDPOINT}
+    region: ${DO_SPACES_REGION}
+    bucket: ${DO_SPACES_BUCKET}
+    access-key: ${DO_SPACES_ACCESS_KEY}
+    secret-key: ${DO_SPACES_SECRET_KEY}
+    presigned-url-expiry-minutes: ${DO_SPACES_PRESIGNED_EXPIRY}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+FRONTEND_URL: ${FRONTEND_URL}
 
 logging:
   level:
     root: INFO
-    org.springframework.data.mongodb.core.MongoTemplate: INFO
-    org.springframework.amqp: INFO
     com.apollo.chat: INFO
+
