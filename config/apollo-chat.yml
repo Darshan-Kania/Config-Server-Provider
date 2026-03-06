@@ -9,7 +9,9 @@ spring:
       port: ${REDIS_PORT:6379}
       password: ${REDIS_PASSWORD:}
 
-  rabbitmq:
+JWT_SECRET: ${JWT_SECRET}
+
+rabbitmq:
     host: ${RABBITMQ_HOST}
     port: 5672
     username: ${RABBITMQ_USERNAME}
