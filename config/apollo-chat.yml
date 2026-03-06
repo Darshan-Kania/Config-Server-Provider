@@ -3,7 +3,6 @@ spring:
     mongodb:
       uri: mongodb+srv://sn_db_user:rObM5sNGEkx1negV@sndev.ijjiuyg.mongodb.net/apollo-chat-dev?appName=SNDEV&retryWrites=true&w=majority
       uuid-representation: standard
-
     redis:
       host: ${REDIS_HOST}
       port: ${REDIS_PORT}
