@@ -1,12 +1,8 @@
 spring:
-  data:
-    mongodb:
-      uri: mongodb+srv://sn_db_user:rObM5sNGEkx1negV@sndev.ijjiuyg.mongodb.net/apollo-chat-dev?appName=SNDEV&retryWrites=true&w=majority
-      uuid-representation: standard
-    redis:
-      host: ${REDIS_HOST}
-      port: ${REDIS_PORT}
-      password: ${REDIS_PASSWORD}
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    password: ${REDIS_PASSWORD}
 
   rabbitmq:
     host: ${RABBITMQ_HOST}
@@ -34,6 +30,9 @@ management:
     web:
       exposure:
         include: health,info
+  health:
+    mongo:
+      enabled: false
 
 
 do:
