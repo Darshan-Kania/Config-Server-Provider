@@ -10,6 +10,24 @@ spring:
             locator:
               enabled: true
               lowerCaseServiceId: true
+      httpclient:
+        websocket:
+          max-frame-payload-length: 65536
+      routes:
+        # WebSocket route for Chat service - must be before discovery locator routes
+        - id: apollo-chat-websocket
+          uri: lb://apollo-chat
+          predicates:
+            - Path=/apollo-chat/ws/**
+          filters:
+            - StripPrefix=1
+        # Regular HTTP route for Chat service
+        - id: apollo-chat
+          uri: lb://apollo-chat
+          predicates:
+            - Path=/apollo-chat/**
+          filters:
+            - StripPrefix=1
 
 eureka:
   client:
