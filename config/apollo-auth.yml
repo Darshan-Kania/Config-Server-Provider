@@ -65,10 +65,12 @@ management:
       exposure:
         include: health,info
 
-sendgrid:
-  api-key: ${SENDGRID_API_KEY}
-  from-email: ${SENDGRID_FROM_EMAIL}
-  from-name: ${SENDGRID_FROM_NAME}
+zepto:
+  mail:
+    api-key: ${ZEPTO_API_KEY}
+    from-email: ${ZEPTO_FROM_EMAIL}
+    from-name: ${ZEPTO_FROM_NAME}
+    url: ${ZEPTO_URL}
 
 JWT_SECRET: ${JWT_SECRET}
 JWT_EXPIRY: ${JWT_EXPIRY}
