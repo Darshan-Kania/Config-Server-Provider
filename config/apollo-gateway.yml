@@ -28,6 +28,20 @@ spring:
             - Path=/apollo-chat/**
           filters:
             - StripPrefix=1
+        # Regular HTTP route for Board service
+        - id: apollo-board
+          uri: lb://apollo-board
+          predicates:
+            - Path=/apollo-board/**
+          filters:
+            - StripPrefix=1
+        # Regular HTTP route for Board service
+        - id: apollo-board
+          uri: lb://apollo-board
+          predicates:
+            - Path=/apollo-board/**
+          filters:
+            - StripPrefix=1
 
 eureka:
   client:

@@ -1,0 +1,42 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI}
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: 5672
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+    listener:
+      simple:
+        concurrency: 2
+        max-concurrency: 5
+        prefetch: 20
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  health:
+    mongo:
+      enabled: false
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+FRONTEND_URL: ${FRONTEND_URL}
+
+logging:
+  level:
+    root: INFO
+    com.apollo.board: INFO
