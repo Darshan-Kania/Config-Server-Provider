@@ -14,34 +14,65 @@ spring:
         websocket:
           max-frame-payload-length: 65536
       routes:
-        # ── WebSocket route for Chat service ──
+        # WebSocket route for Chat service - must be before discovery locator routes
         - id: apollo-chat-websocket
           uri: lb://apollo-chat
           predicates:
             - Path=/apollo-chat/ws/**
           filters:
             - StripPrefix=1
-
-        # ── Chat HTTP ──
+        # Regular HTTP route for Chat service
         - id: apollo-chat
           uri: lb://apollo-chat
           predicates:
             - Path=/apollo-chat/**
           filters:
             - StripPrefix=1
-
-        # ── Board HTTP ──
+        # Regular HTTP route for Board service
         - id: apollo-board
           uri: lb://apollo-board
           predicates:
             - Path=/apollo-board/**
           filters:
             - StripPrefix=1
-
-        # ── Sync HTTP (NEW) ──
+        # Regular HTTP route for Board service
+        - id: apollo-board
+          uri: lb://apollo-board
+          predicates:
+            - Path=/apollo-board/**
+          filters:
+            - StripPrefix=1
         - id: apollo-sync
           uri: lb://apollo-sync
           predicates:
             - Path=/apollo-sync/**
           filters:
             - StripPrefix=1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      enabled: true
+  info:
+    env:
+      enabled: true
+JWT_SECRET: ${JWT_SECRET}
+info:
+  app:
+    name: gatewayserver
+    description: Apollo Gateway Server Application
+    version: 1.0.0
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: INFO
